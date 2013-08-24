@@ -42,8 +42,7 @@
   (let ((bufs (message-buffers)))
     (if (and bufs (y-or-n-p "Attach to existing mail buffer? "))
         (switch-to-buffer
-         (cond ((= 1 (length bufs))
-                (car bufs))
+         (cond ((= 1 (length bufs)) (car bufs))
                (t (completing-read
                    (format "Which mail buffer (%d in total): " (length bufs))
                    bufs nil t))))
@@ -125,12 +124,12 @@
         (emails (bbdb-record-mail record))
         (phones (bbdb-record-phone record))
         (addresses (bbdb-record-address record)))
-    (insert "<tr><td>Name:</td><td>" name "</td></tr>\n")
+    (insert "<tr><td>name:</td><td>" name "</td></tr>\n")
     (dolist (org organizations)
-      (insert "<tr><td>Organisation:</td><td>" org "</td></tr>\n"))
+      (insert "<tr><td>organisation:</td><td>" org "</td></tr>\n"))
     ;; emails
     (when emails
-      (insert "<tr><td>Email:</td><td>" (pop emails) "</td></tr>\n")
+      (insert "<tr><td>email:</td><td>" (pop emails) "</td></tr>\n")
       (dolist (email emails)
         (insert "<tr><td></td><td>" email "</td></tr>\n")))
     ;; phones
@@ -146,7 +145,7 @@
       (insert "<td>"
               (replace-regexp-in-string "\n" "<br>"
                                         (bbdb-format-address addr 2))
-              ":</td>")
+              "</td>")
       (insert "</tr>\n")))
   (insert "</table>\n"))
 
